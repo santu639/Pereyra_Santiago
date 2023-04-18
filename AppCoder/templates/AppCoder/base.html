@@ -162,6 +162,14 @@
         <div class="col-sm-8 col-md-7 py-4">
           <h4>Sobre Nosotros</h4>
           <p class="text-body-secondary">Somos una pagina de compra-ventas de electrodomesticos con mucha experiencia.</p>
+          
+            
+          <form action="{% url 'platillo-search' %}" class="d-flex">
+            <input class="form-control me-2" name="criterio" type="search" placeholder="Buscar un post" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        
+        
         </div>
 
       </div>
@@ -173,7 +181,10 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
         <strong>Album</strong>
       </a>
-     
+      
+      <a href="{% url  'mensaje-create' %}" class="navbar-brand d-flex align-items-center">
+        <strong>Enviar mensaje</strong>
+      </a> 
 
 
       {% if user.is_authenticated %}
@@ -183,7 +194,18 @@
           <strong>Nuevo Producto</strong>
         </a>
 
-        
+
+        {% if user.profile %}
+        <a href="{% url  'profile-update' user.profile.id %}" class="navbar-brand d-flex align-items-center">
+          <strong>Actualizar profile</strong>
+
+        {% else %}
+
+        <a href="{% url  'profile-create' %}" class="navbar-brand d-flex align-items-center">
+          <strong>Actualizar profile</strong>
+        {% endif %}  
+
+
         <a href="{% url  'logout' %}" class="navbar-brand d-flex align-items-center">
           <strong>Log out</strong>
         </a>
